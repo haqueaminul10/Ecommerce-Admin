@@ -1,31 +1,51 @@
 /* LAYOUT SECTION */
 .layoutContainer {
   display: flex;
-  flex-direction: row;
+}
+.childrenItems {
+  margin: 5%;
+}
+/* SIDEBAR SECTION */
+.sidebarSection {
+  background: #262d34;
+  width: 15%;
   height: 100vh;
+  color: #bfc1c3;
 }
-
-.mainContent {
-  flex: 1;
-  padding: 20px;
-  background: yellow;
+.dashBoard {
+  margin: 5% 20px;
 }
-
+.logo {
+  /* font-size: 20px; */
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logoSize {
+  margin-right: 7px;
+}
+.companyName {
+  font-size: 30px;
+}
+.sideBarMenu {
+  margin: 30px 7px;
+}
 /* NAVBAR SECTION */
-
-.navbarContainer {
-  background: #ff811a;
+.navbarSection {
+  width: 100%;
 }
-.navbarContain {
+.navbarContainer {
+  background: #eae8e8;
+}
+.navbarMenu {
   margin: 0 5%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
 }
-
-/* SIDEBAR SECTION */
-
-.sidebarContainer {
-  background: #ff811a;
-  height: 700px;
-  width: 15%;
+.menuName {
+  font-size: 24px;
 }
