@@ -1,0 +1,31 @@
+/* LAYOUT SECTION */
+.layoutContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  background: yellow;
+}
+
+/* NAVBAR SECTION */
+
+.navbarContainer {
+  background: #ff811a;
+}
+.navbarContain {
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* SIDEBAR SECTION */
+
+.sidebarContainer {
+  background: #ff811a;
+  height: 700px;
+  width: 15%;
+}
