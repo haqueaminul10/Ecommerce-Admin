@@ -1,0 +1,71 @@
+.sidebarSection {
+  background: #262d34;
+  width: 15%;
+  height: 100vh;
+  color: #bfc1c3;
+}
+.dashBoard {
+  margin: 5% 20px;
+}
+.logo {
+  /* font-size: 20px; */
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logoSize {
+  margin-right: 7px;
+}
+.companyName {
+  font-size: 30px;
+}
+.sideBarMenu {
+  margin: 30px 7px;
+}
+.itemsContainer {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemsContainerSec1 {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  margin: 10px 0;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.itemsContainerSec1:hover {
+  color: white;
+  cursor: pointer;
+}
+.itemsLabel {
+  font-size: 18px;
+}
+.listArrowIcon {
+  margin-left: 80px;
+}
+.submenu {
+  margin: 7px 20%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease-out, opacity 0.3s ease-out;
+  opacity: 0;
+}
+
+.submenu.open {
+  max-height: 500px;
+  opacity: 1;
+}
+.subItem {
+  padding: 7px;
+  font-size: 14px;
+}
+.subItem:hover {
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -5,33 +5,7 @@
 .childrenItems {
   margin: 5%;
 }
-/* SIDEBAR SECTION */
-.sidebarSection {
-  background: #262d34;
-  width: 15%;
-  height: 100vh;
-  color: #bfc1c3;
-}
-.dashBoard {
-  margin: 5% 20px;
-}
-.logo {
-  /* font-size: 20px; */
-  color: white;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.logoSize {
-  margin-right: 7px;
-}
-.companyName {
-  font-size: 30px;
-}
-.sideBarMenu {
-  margin: 30px 7px;
-}
+
 /* NAVBAR SECTION */
 .navbarSection {
   width: 100%;
@@ -48,4 +22,9 @@
 }
 .menuName {
   font-size: 24px;
+}
+.menuItems {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
