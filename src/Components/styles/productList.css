@@ -1,0 +1,40 @@
+.productListContainer {
+  background-color: whitesmoke;
+}
+.productListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.productListHeaderRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.selectionList > select {
+  height: 25px;
+  border: none;
+}
+.selectionList > select:hover {
+  border: none;
+}
+.productTableContainer {
+  padding: 20px 10px;
+}
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+.tableheader {
+  height: 50px;
+}
+.tableheader > tr {
+  border-bottom: 2px solid rgb(206, 203, 203);
+}
+.productTableAction {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
