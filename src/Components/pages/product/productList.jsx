@@ -13,13 +13,12 @@ const ProductList = () => {
 
         <div className='productListHeaderRight'>
           <div>
-            <Button
-              variant='contained'
-              size='small'
+            <button
               onClick={() => navigate('/products/add')}
+              className='addButtonProduct'
             >
               Add Product
-            </Button>
+            </button>
           </div>
           <div className='selectionList'>
             <label htmlFor='product'></label>
@@ -32,44 +31,6 @@ const ProductList = () => {
         </div>
       </div>
       <hr />
-      <div className='productTableContainer'>
-        <table className='productTable'>
-          <thead className='tableheader'>
-            <tr>
-              <th>Id</th>
-              <th>Product Name & size</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Rating</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>sada</td>
-              <td>dsa</td>
-              <td>ads</td>
-              <td>asd</td>
-              <td>
-                <div className='productTableAction'>
-                  <div>
-                    <VisibilityIcon />
-                  </div>
-                  <div>
-                    {' '}
-                    <EditIcon />
-                  </div>
-                  <div>
-                    {' '}
-                    <DeleteIcon />
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };
