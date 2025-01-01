@@ -19,7 +19,7 @@ const dashboardItem = [
     id: 2,
     label: 'Products',
     icon: <ShoppingBagIcon fontSize='small' />,
-    // route: '/product',
+
     subRoutes: [
       { label: 'List', route: '/product/list' },
       { label: 'Add Product', route: '/products/add' },
@@ -34,71 +34,72 @@ const dashboardItem = [
 ];
 const SideBar = () => {
   const navigate = useNavigate();
-  const [showListId, setShowListIs] = useState(null);
-
-  const handleToggleList = (item) => {
+  const [showDropdown, setShowDropdown] = useState(null);
+  const handleToggleDropdown = (item) => {
     if (item.subRoutes) {
-      if (showListId === item.id) {
-        setShowListIs(null);
-      } else {
-        setShowListIs(item.id);
-      }
+      setShowDropdown(showDropdown === item.id ? null : item.id);
     } else {
+      setShowDropdown(null);
       navigate(item.route);
     }
   };
 
   return (
-    <div>
-      <div className='dashBoard'>
-        <div onClick={() => navigate('/')} className='logo'>
-          <div className='logoSize'>
+    <>
+      <div className='sidebarContainer'>
+        <div className='logo'>
+          <div>
             <LocalMallIcon fontSize='large' />
           </div>
-          <div className='companyName'> EcoHuB</div>
+          <h1>EcoHuB</h1>
         </div>
-      </div>
 
-      <div className='sideBarMenu'>
-        {dashboardItem &&
-          dashboardItem.length > 0 &&
-          dashboardItem.map((item) => (
-            <div
-              key={item.id}
-              className='itemsContainer'
-              onClick={() => handleToggleList(item)}
-            >
-              <section className='itemsContainerSec1'>
-                <div>{item.icon}</div>
-                <div className='itemsLabel'>{item.label}</div>
-                <div className='listArrowIcon'>
-                  {item.subRoutes &&
-                    (showListId === item.id ? (
-                      <KeyboardControlKeyIcon />
-                    ) : (
-                      <KeyboardArrowDownIcon />
+        <div className='sidebarItemsContainer'>
+          {dashboardItem &&
+            dashboardItem.length > 0 &&
+            dashboardItem.map((item) => (
+              <div key={item.id}>
+                <div
+                  onClick={() => handleToggleDropdown(item)}
+                  className='sidebarItem'
+                >
+                  <div>{item.icon}</div>
+                  <p
+                    // className={`sidebarItemlabel  ${
+                    //   showDropdown === item.id ? 'active' : ''
+                    // }`}
+                    className='sidebarItemlabel'
+                  >
+                    {item.label}
+                  </p>
+                  <div className='sidebarUpDownIcon'>
+                    {item.subRoutes &&
+                      (showDropdown ? (
+                        <KeyboardControlKeyIcon />
+                      ) : (
+                        <KeyboardArrowDownIcon />
+                      ))}
+                  </div>
+                </div>
+                <div className='subRouteContainer'>
+                  {showDropdown === item.id &&
+                    item.subRoutes &&
+                    item.subRoutes.length > 0 &&
+                    item.subRoutes.map((subItem, index) => (
+                      <div
+                        key={index}
+                        onClick={() => navigate(subItem.route)}
+                        className='subRouteItems'
+                      >
+                        {subItem.label}
+                      </div>
                     ))}
                 </div>
-              </section>
-
-              <section
-                className={`submenu ${showListId === item.id && 'open'}`}
-              >
-                {showListId === item.id &&
-                  item.subRoutes.map((sub, index) => (
-                    <div
-                      key={index}
-                      className='subItem'
-                      onClick={() => navigate(sub.route)}
-                    >
-                      {sub.label}
-                    </div>
-                  ))}
-              </section>
-            </div>
-          ))}
+              </div>
+            ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
