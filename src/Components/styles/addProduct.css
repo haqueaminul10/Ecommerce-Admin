@@ -1,0 +1,86 @@
+/* .addproductContainer {
+} */
+.productImageSection,
+.productInfoSection {
+  background-color: #eae8e8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.productPhotoTitle,
+.productInfoTitle {
+  padding: 15px;
+}
+.drag-area-container {
+  padding: 15px;
+}
+.drag-area {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 40px 0;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.drag-area:hover {
+  background-color: #f0f0f0;
+  border-color: #e6612a;
+}
+
+.icon {
+  margin-bottom: 20px;
+}
+
+.text {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+}
+
+.select {
+  font-size: 16px;
+  color: #555;
+}
+
+.mark {
+  color: #e6612a;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.file {
+  display: none;
+}
+
+.drag-area:focus {
+  outline: 2px solid #e6612a;
+}
+.productInfoForm {
+  padding: 15px;
+}
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.input-div {
+  width: 100%;
+}
+.input-label {
+  color: #555;
+  margin: 3px 0;
+  font-size: 16px;
+}
+
+.addProductInput {
+  width: 80%;
+  height: 35px;
+  font-size: 14px;
+  padding: 10px;
+}
