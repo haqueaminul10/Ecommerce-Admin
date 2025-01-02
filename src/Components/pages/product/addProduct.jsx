@@ -1,107 +1,118 @@
+import { useState, useRef, useEffect } from 'react';
 import '../../styles/addProduct.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 const AddProduct = () => {
+  const [images, setImages] = useState([]);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const selectFiles = () => fileInputRef.current.click();
+
+  const onFileSelect = (event) => {
+    const files = Array.from(event.target.files);
+    const validImages = files
+      .filter((file) => file.type.startsWith('image/'))
+      .filter((file) => !images.some((image) => image.name === file.name));
+
+    const newImages = validImages.map((file) => ({
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+
+    setImages((prevImages) => [...prevImages, ...newImages]);
+  };
+
+  const deleteImage = (index) => {
+    setImages((prevImages) => {
+      const imageToRemove = prevImages[index];
+      if (imageToRemove) URL.revokeObjectURL(imageToRemove.url);
+      return prevImages.filter((_, i) => i !== index);
+    });
+  };
+
+  const onDragOver = (event) => {
+    event.preventDefault();
+    setIsDragging(true);
+  };
+
+  const onDragLeave = () => setIsDragging(false);
+
+  const onDrop = (event) => {
+    event.preventDefault();
+    setIsDragging(false);
+
+    const files = Array.from(event.dataTransfer.files);
+    const validImages = files
+      .filter((file) => file.type.startsWith('image/'))
+      .filter((file) => !images.some((image) => image.name === file.name));
+
+    const newImages = validImages.map((file) => ({
+      name: file.name,
+      url: URL.createObjectURL(file),
+    }));
+
+    setImages((prevImages) => [...prevImages, ...newImages]);
+  };
+
+  useEffect(() => {
+    return () => {
+      images.forEach((image) => {
+        URL.revokeObjectURL(image.url);
+      });
+    };
+  }, [images]);
+
   return (
-    // <div className='addproductContainer'>
-    //   <div className='productImageSection'>
-    //     <h3 className='productPhotoTitle'>Add Product Photo</h3>
+    <div className='add-product-container'>
+      <form>
+        <section className='product-photo'>
+          <h3 className='product-section-title'>Add Product Photo</h3>
+          <hr />
+          <div
+            className='drag-area'
+            onDragOver={onDragOver}
+            onDragLeave={onDragLeave}
+            onDrop={onDrop}
+          >
+            {isDragging ? (
+              <span className='select'>Drop image here</span>
+            ) : (
+              <>
+                Drag & Drop image here or
+                <span className='select' onClick={selectFiles}>
+                  Click Browse
+                </span>
+              </>
+            )}
 
-    //     <hr />
-    //     <section className='drag-area-container'>
-    //       <div className='drag-area'>
-    //         <div className='icon'>
-    //           <CloudUploadIcon
-    //             sx={{ color: '#e6612a', fontSize: '60px' }}
-    //             className='select'
-    //           />
-    //         </div>
-    //         <div className='text'>
-    //           <span className='select'>Drop your images here, or </span>
-    //           <span className='select mark'> click to browse</span>
-    //           <input type='file' multiple className='file' />
-    //         </div>
-    //       </div>
-    //     </section>
-    //   </div>
-
-    //   <div className='productInfoSection'>
-    //     <h3 className='productInfoTitle'>Product Information</h3>
-    //     <hr />
-
-    //     <section className='productInfoForm'>
-    //       <div className='formRow'>
-    //         <div className='input-div'>
-    //           <p className='input-label'>Product Name</p>
-    //           <input
-    //             type='text'
-    //             placeholder='Items Name'
-    //             className='addProductInput'
-    //           />
-    //         </div>
-    //         <div className='input-div'>
-    //           <p className='input-label'>Product Categories</p>
-    //           <label htmlFor='categories'></label>
-    //           <select
-    //             name='categories'
-    //             id='categories'
-    //             className='addProductInput'
-    //           >
-    //             <option value='' hidden>
-    //               Choose a category
-    //             </option>
-    //             <option value='mens'>Mens</option>
-    //             <option value='womens'>Womens</option>
-    //             <option value='child'>Children</option>
-    //           </select>
-    //         </div>
-    //       </div>
-    //       <div className='formRow'>
-    //         <div className='input-div'>
-    //           <p className='input-label'>Brand</p>{' '}
-    //           <input
-    //             type='text'
-    //             placeholder='Brand Name'
-    //             className='addProductInput'
-    //           />
-    //         </div>
-    //         <div className='input-div'>
-    //           <p className='input-label'>Weight</p>{' '}
-    //           <input
-    //             type='text'
-    //             placeholder='In gn & kg'
-    //             className='addProductInput'
-    //           />
-    //         </div>
-    //         <div className='input-div'>
-    //           <p className='input-label'>Gender</p>
-    //           <label htmlFor='categories'></label>
-    //           <select
-    //             name='categories'
-    //             id='categories'
-    //             className='addProductInput'
-    //           >
-    //             <option value='' hidden>
-    //               Choose a category
-    //             </option>
-    //             <option value='mens'>Mens</option>
-    //             <option value='womens'>Womens</option>
-    //             <option value='child'>Children</option>
-    //           </select>
-    //         </div>
-    //       </div>
-
-    //       <div className='formRow'>
-    //         <div className='input-div'>
-    //           <p>Size :</p>
-    //         </div>
-    //         <div className='input-div'>
-    //           <p>Color :</p>
-    //         </div>
-    //       </div>
-    //     </section>
-    //   </div>
-    // </div>
-    <>product</>
+            <input
+              type='file'
+              name='file'
+              multiple
+              ref={fileInputRef}
+              onChange={onFileSelect}
+              accept='image/*'
+              style={{ display: 'none' }}
+            />
+          </div>
+          <div className='container'>
+            {images.map((image, index) => (
+              <div className='image' key={index}>
+                <span
+                  className='delete'
+                  onClick={() => deleteImage(index)}
+                  aria-label='Delete image'
+                >
+                  &times;
+                </span>
+                <img src={image.url} alt={image.name} />
+              </div>
+            ))}
+          </div>
+        </section>
+      </form>
+    </div>
   );
 };
 

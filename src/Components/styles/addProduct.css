@@ -87,3 +87,65 @@
 .addProductInput:focus {
   outline: none;
 } */
+
+.add-product-container {
+  /* background-color: yellow; */
+}
+.product-photo {
+  background-color: #eae8e8;
+}
+.product-section-title {
+  padding: 15px;
+}
+.drag-area {
+  margin: 15px;
+  height: 200px;
+  width: 98%;
+  border: 2px dotted black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+  margin-top: 10px;
+}
+.select {
+  cursor: pointer;
+  transform: 0.4s;
+}
+.container {
+  margin: 15px;
+  height: auto;
+  width: 98%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+.image {
+  width: 100px;
+  margin-right: 7px;
+  height: 100px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.delete {
+  position: absolute;
+  top: -2px;
+  right: 9px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 999;
+  color: red;
+}
+.drag-area input {
+  display: none;
+}
