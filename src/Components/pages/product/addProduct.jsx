@@ -78,12 +78,24 @@ const AddProduct = () => {
             {isDragging ? (
               <span className='select'>Drop image here</span>
             ) : (
-              <>
-                Drag & Drop image here or
-                <span className='select' onClick={selectFiles}>
-                  Click Browse
-                </span>
-              </>
+              <div>
+                <div className='upload-icon'>
+                  <CloudUploadIcon
+                    sx={{ color: '#e6612a', fontSize: '60px' }}
+                    onClick={selectFiles}
+                  />
+                </div>
+                <div>
+                  <span className='drag-drop-text'>
+                    {' '}
+                    Drag & Drop images here , or{'  '}
+                  </span>
+
+                  <span className='select clicktobrowse' onClick={selectFiles}>
+                    Click To Browse
+                  </span>
+                </div>
+              </div>
             )}
 
             <input
@@ -93,7 +105,6 @@ const AddProduct = () => {
               ref={fileInputRef}
               onChange={onFileSelect}
               accept='image/*'
-              style={{ display: 'none' }}
             />
           </div>
           <div className='container'>
