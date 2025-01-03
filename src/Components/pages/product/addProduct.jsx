@@ -64,7 +64,7 @@ const AddProduct = () => {
   }, [images]);
 
   return (
-    <div className='add-product-container'>
+    <div className='add-product-container content'>
       <form>
         <section className='product-photo'>
           <h3 className='product-section-title'>Add Product Photo</h3>
@@ -265,6 +265,33 @@ const AddProduct = () => {
                 <input type='text' className='form-input' />
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className='product-price'>
+          <h3 className='product-section-title'>Pricing Details</h3>
+          <hr />
+          <div className='product-information-form'>
+            <div className='form-row'>
+              <div>
+                <label htmlFor='' className='form-label'>
+                  Price
+                </label>
+                <input type='number' placeholder='000' className='form-input' />
+              </div>
+              <div>
+                <label htmlFor='' className='form-label'>
+                  Discount Price
+                </label>
+                <input type='number' placeholder='000' className='form-input' />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className='submit-button-part'>
+          <div className='button-section'>
+            <button className='create-button'>Create Product</button>
+            <button className='cancel-button'>Cancel</button>
           </div>
         </section>
       </form>
