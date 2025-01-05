@@ -3,8 +3,23 @@ import '../../styles/addProduct.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { productSize, productColor } from './addProduct.json';
 const AddProduct = () => {
+  const initialProductDetails = {
+    productName: '',
+    productCategories: '',
+    brandName: '',
+    weight: '',
+    gender: '',
+    size: [],
+    color: [],
+    productDescription: '',
+    quantity: '',
+    tag: '',
+    price: '',
+    discountPrice: '',
+  };
   const [images, setImages] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [productDetails, setProductDetails] = useState(initialProductDetails);
   const fileInputRef = useRef(null);
 
   const selectFiles = () => fileInputRef.current.click();
@@ -55,6 +70,22 @@ const AddProduct = () => {
     setImages((prevImages) => [...prevImages, ...newImages]);
   };
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setProductDetails({ ...productDetails, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const productData = {
+      ...productDetails,
+      images,
+    };
+    console.log(`📌 ~ handleSubmit ~ productData:`, productData);
+    setProductDetails(initialProductDetails);
+    setImages([]);
+  };
+
   useEffect(() => {
     return () => {
       images.forEach((image) => {
@@ -65,7 +96,7 @@ const AddProduct = () => {
 
   return (
     <div className='add-product-container content'>
-      <form>
+      <form onSubmit={handleSubmit}>
         <section className='product-photo'>
           <h3 className='product-section-title'>Add Product Photo</h3>
           <hr />
@@ -129,23 +160,28 @@ const AddProduct = () => {
           <div className='product-information-form'>
             <div className='form-row'>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='productName' className='form-label'>
                   Product Name
                 </label>
                 <input
                   type='text'
                   placeholder='Items Name'
                   className='form-input'
+                  name='productName'
+                  value={productDetails.productName}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label htmlFor='categories' className='form-label'>
+                <label htmlFor='productCategories' className='form-label'>
                   Product Categories
                 </label>
                 <select
-                  name='categories'
-                  id='categories'
+                  name='productCategories'
+                  id='productCategories'
+                  value={productDetails.productCategories}
                   className='form-input'
+                  onChange={handleInputChange}
                 >
                   <option value='' hidden>
                     Choose a categories
@@ -158,32 +194,40 @@ const AddProduct = () => {
             </div>
             <div className='form-row-2'>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='brandName' className='form-label'>
                   Brand Name
                 </label>
                 <input
                   type='text'
                   placeholder='Brand Name'
                   className='form-input'
+                  name='brandName'
+                  value={productDetails.brandName}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='weight' className='form-label'>
                   Weight
                 </label>
                 <input
-                  type='text'
+                  type='number'
+                  name='weight'
+                  value={productDetails.weight}
+                  onChange={handleInputChange}
                   placeholder='In grm & kg'
                   className='form-input'
                 />
               </div>
               <div>
-                <label htmlFor='categories' className='form-label'>
+                <label htmlFor='gender' className='form-label'>
                   Gender
                 </label>
                 <select
-                  name='categories'
-                  id='categories'
+                  name='gender'
+                  id='gender'
+                  value={productDetails.gender}
+                  onChange={handleInputChange}
                   className='form-input'
                 >
                   <option value='' hidden>
@@ -237,32 +281,43 @@ const AddProduct = () => {
               </div>
             </div>
             <div>
-              <label htmlFor='' className='form-label'>
+              <label htmlFor='productDescription' className='form-label'>
                 Description
               </label>
               <textarea
-                name=''
-                id=''
+                name='productDescription'
+                id='productDescription'
+                value={productDetails.productDescription}
+                onChange={handleInputChange}
                 placeholder='Short Description About The Product'
                 className='product-descriptioin'
               />
             </div>
             <div className='form-row '>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='quantity' className='form-label'>
                   Stock
                 </label>
                 <input
                   type='text'
+                  name='quantity'
+                  value={productDetails.quantity}
+                  onChange={handleInputChange}
                   placeholder='Quantity'
                   className='form-input'
                 />
               </div>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='tag' className='form-label'>
                   Tag
                 </label>
-                <input type='text' className='form-input' />
+                <input
+                  type='text'
+                  className='form-input'
+                  name='tag'
+                  value={productDetails.tag}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
           </div>
@@ -274,16 +329,30 @@ const AddProduct = () => {
           <div className='product-information-form'>
             <div className='form-row'>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='price' className='form-label'>
                   Price
                 </label>
-                <input type='number' placeholder='000' className='form-input' />
+                <input
+                  type='number'
+                  placeholder='000'
+                  className='form-input'
+                  name='price'
+                  value={productDetails.price}
+                  onChange={handleInputChange}
+                />
               </div>
               <div>
-                <label htmlFor='' className='form-label'>
+                <label htmlFor='discountPrice' className='form-label'>
                   Discount Price
                 </label>
-                <input type='number' placeholder='000' className='form-input' />
+                <input
+                  type='number'
+                  placeholder='000'
+                  className='form-input'
+                  name='discountPrice'
+                  value={productDetails.discountPrice}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
           </div>
