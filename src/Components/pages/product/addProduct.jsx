@@ -75,6 +75,39 @@ const AddProduct = () => {
     setProductDetails({ ...productDetails, [name]: value });
   };
 
+  const toogleSelectSize = (size) => {
+    setProductDetails((prevDetails) => {
+      const currentSize = prevDetails.size;
+      if (currentSize.includes(size)) {
+        return {
+          ...prevDetails,
+          size: currentSize.filter((s) => s !== size),
+        };
+      } else {
+        return {
+          ...prevDetails,
+          size: [...currentSize, size],
+        };
+      }
+    });
+  };
+
+  const toggleSelectColor = (color) => {
+    setProductDetails((prevDetails) => {
+      const currentColor = prevDetails.color;
+      if (currentColor.includes(color)) {
+        return {
+          ...prevDetails,
+          color: currentColor.filter((s) => s !== color),
+        };
+      } else {
+        return {
+          ...prevDetails,
+          color: [...currentColor, color],
+        };
+      }
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const productData = {
@@ -82,6 +115,10 @@ const AddProduct = () => {
       images,
     };
     console.log(`📌 ~ handleSubmit ~ productData:`, productData);
+    setProductDetails(initialProductDetails);
+    setImages([]);
+  };
+  const handleCancel = () => {
     setProductDetails(initialProductDetails);
     setImages([]);
   };
@@ -248,9 +285,17 @@ const AddProduct = () => {
                   {productSize &&
                     productSize.length > 0 &&
                     productSize.map((psize, index) => (
-                      <button key={index} className='size-button'>
+                      <span
+                        key={index}
+                        // className='size-button '
+                        className={`size-button ${
+                          productDetails.size.includes(psize) &&
+                          'selected-size-button'
+                        }`}
+                        onClick={() => toogleSelectSize(psize)}
+                      >
                         {psize}
-                      </button>
+                      </span>
                     ))}
                 </div>
               </div>
@@ -262,20 +307,22 @@ const AddProduct = () => {
                   {productColor &&
                     productColor.length > 0 &&
                     productColor.map((color, index) => (
-                      <button
+                      <span
                         key={index}
-                        className='color-button'
+                        className={`color-button ${
+                          productDetails.color.includes(color)
+                            ? 'selected-color-button'
+                            : ''
+                        }`}
                         title={color}
-                        style={{
-                          borderColor: color === '#FFFFFF' ? '#ddd' : 'black',
-                        }}
+                        onClick={() => toggleSelectColor(color)}
                       >
                         <span
                           style={{
                             backgroundColor: color,
                           }}
                         ></span>
-                      </button>
+                      </span>
                     ))}
                 </div>
               </div>
@@ -360,7 +407,9 @@ const AddProduct = () => {
         <section className='submit-button-part'>
           <div className='button-section'>
             <button className='create-button'>Create Product</button>
-            <button className='cancel-button'>Cancel</button>
+            <span className='cancel-button' onClick={handleCancel}>
+              Cancel
+            </span>
           </div>
         </section>
       </form>
