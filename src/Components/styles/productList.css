@@ -1,28 +1,28 @@
-.productListContainer {
-  background-color: whitesmoke;
+.product-list-container {
+  /* border: 2px solid green; */
+  background-color: #eae8e8;
+  border-radius: 15px;
 }
-.productListHeader {
+.content {
+  height: calc(90vh -70px);
+  overflow-y: auto;
+}
+.list-product-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 15px;
 }
-.productListHeaderRight {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.addButtonProduct {
-  color: white;
+.add-product-button {
   background-color: #e6612a;
+  color: white;
+  border: none;
   padding: 7px;
+  margin-right: 10px;
   border-radius: 7px;
-  border: none;
 }
-.selectionList > select {
-  height: 25px;
-  border: none;
-}
-.selectionList > select:hover {
-  border: none;
+.product-list-filter {
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 7px;
 }

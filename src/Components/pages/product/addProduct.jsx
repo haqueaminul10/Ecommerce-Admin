@@ -133,7 +133,7 @@ const AddProduct = () => {
 
   return (
     <div className='add-product-container content'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='add-product-form'>
         <section className='product-photo'>
           <h3 className='product-section-title'>Add Product Photo</h3>
           <hr />

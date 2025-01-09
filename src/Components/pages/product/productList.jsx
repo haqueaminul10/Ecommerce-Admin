@@ -1,35 +1,33 @@
-import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/productList.css';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { productList } from './addProduct.json';
+
 const ProductList = () => {
+  console.log(`📌 ~ productList:`, productList);
+
   const navigate = useNavigate();
   return (
-    <div className='productListContainer'>
-      <div className='productListHeader'>
-        <h2>All Product List</h2>
-
-        <div className='productListHeaderRight'>
-          <div>
-            <button
-              onClick={() => navigate('/products/add')}
-              className='addButtonProduct'
-            >
-              Add Product
-            </button>
-          </div>
-          <div className='selectionList'>
-            <label htmlFor='product'></label>
-            <select name='product' id='product'>
-              <option value='this week'>This week</option>
-              <option value='this month'>This month</option>
-              <option value='this year'>This year</option>
-            </select>
-          </div>
+    <div className='product-list-container content'>
+      <section className='list-product-header'>
+        <h3>All Product List</h3>
+        <div>
+          <button className='add-product-button'>Add Product</button>
+          <select
+            name='product-filter'
+            id='product-filter'
+            className='product-list-filter'
+          >
+            {/* <label htmlFor='product-filter'></label> */}
+            <option value='this day'>This Day</option>
+            <option value='this week'>This week</option>
+            <option value='this month'>This month</option>
+            <option value='this year'>This year</option>
+          </select>
         </div>
-      </div>
+      </section>
       <hr />
     </div>
   );

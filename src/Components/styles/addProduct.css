@@ -4,7 +4,9 @@
 .content {
   height: calc(90vh - 70px);
   overflow-y: auto;
-  padding: 0 15px;
+}
+.add-product-form {
+  padding-right: 15px;
 }
 /* PRODUCT-PHOTO */
 
